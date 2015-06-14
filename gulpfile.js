@@ -17,10 +17,10 @@ var gulp = require('gulp'),
 // Styles
 gulp.task('styles', function() {
   return sass('src/styles/main.scss', { style: 'expanded' })
-    .pipe(gulp.dest('dist/styles'))
+    .pipe(gulp.dest('resources/styles'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(minifycss())
-    .pipe(gulp.dest('dist/styles'))
+    .pipe(gulp.dest('resources/styles'))
     .pipe(notify({ message: 'Styles task complete' }));
 });
 
@@ -30,10 +30,10 @@ gulp.task('scripts', function() {
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('default'))
     .pipe(concat('main.js'))
-    .pipe(gulp.dest('dist/scripts'))
+    .pipe(gulp.dest('resources/scripts'))
     .pipe(rename({ suffix: '.min' }))
     .pipe(uglify())
-    .pipe(gulp.dest('dist/scripts'))
+    .pipe(gulp.dest('resources/scripts'))
     .pipe(notify({ message: 'Scripts task complete' }));
 });
 
@@ -41,13 +41,13 @@ gulp.task('scripts', function() {
 gulp.task('images', function() {
   return gulp.src('src/images/**/*')
     .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
-    .pipe(gulp.dest('dist/images'))
+    .pipe(gulp.dest('resources/images'))
     .pipe(notify({ message: 'Images task complete' }));
 });
  
 // Clean
 gulp.task('clean', function(cb) {
-    del(['dist/styles', 'dist/scripts', 'dist/images'], cb)
+    del(['resources/styles', 'resources/scripts', 'resources/images'], cb)
 });
 
 // Default task
