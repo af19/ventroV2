@@ -4,6 +4,8 @@ author: 'Amir Farzan'
 website: 'http://amirfarzan.com'
 engine: twig
 404: '404'
+customFields:
+    faviconImage: { type: image, title: 'Favicon Image', default: '@images/favicon.png', comment: 'Upload your favicon. Recommended dimmensions of 16px by 16px. You must use a .png file.' }
 ---
 
 

@@ -7,11 +7,9 @@ var gulp = require('gulp'),
     minifycss = require('gulp-minify-css'),
     jshint = require('gulp-jshint'),
     uglify = require('gulp-uglify'),
-    imagemin = require('gulp-imagemin'),
     concat = require('gulp-concat'),
     rename = require('gulp-rename'),
     notify = require('gulp-notify'),
-    cache = require('gulp-cache'),
     del = require('del');
 
 // Styles
@@ -36,14 +34,6 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest('resources/scripts'))
     .pipe(notify({ message: 'Scripts task complete' }));
 });
-
-// Images
-gulp.task('images', function() {
-  return gulp.src('src/images/**/*')
-    .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
-    .pipe(gulp.dest('resources/images'))
-    .pipe(notify({ message: 'Images task complete' }));
-});
  
 // Clean
 gulp.task('clean', function(cb) {
@@ -52,7 +42,7 @@ gulp.task('clean', function(cb) {
 
 // Default task
 gulp.task('default', ['clean'], function() {
-    gulp.start('styles', 'scripts', 'images');
+    gulp.start('styles', 'scripts');
 });
 
 // Watch
@@ -63,9 +53,6 @@ gulp.task('watch', function() {
  
   // Watch .js files
   gulp.watch('src/scripts/**/*.js', ['scripts']);
- 
-  // Watch image files
-  gulp.watch('src/images/**/*', ['images']);
  
 });
 
